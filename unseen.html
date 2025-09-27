@@ -5,82 +5,158 @@
 <meta name="viewport" content="width=device-width,initial-scale=1" />
 <title>mental illness</title>
 <style>
-body {
-margin: 0;
-height: 100vh;
-display: flex;
-justify-content: center;
-align-items: center;
-background: repeating-linear-gradient(45deg, #ffb347, #ffb347 20px, #ffcc33 20px, #ffcc33 40px);
-font-family: Comic Sans MS, cursive, sans-serif;
-color: #222;
-}
-.card {
-background: #fff;
-border: 4px solid #000;
-padding: 20px;
-border-radius: 16px;
-box-shadow: 6px 6px 0px #000;
-text-align: center;
-max-width: 300px;
-}
-.avatar {
-width: 100px;
-height: 100px;
-border-radius: 50%;
-background: #ff4d6d;
-display: flex;
-align-items: center;
-justify-content: center;
-font-size: 36px;
-font-weight: bold;
-color: #fff;
-margin: 0 auto 15px;
-border: 3px solid #000;
-}
-h1 {
-margin: 0;
-font-size: 24px;
-}
-.subtitle {
-font-size: 14px;
-margin: 6px 0 15px;
-color: #444;
-}
-.bio {
-font-size: 14px;
-line-height: 1.4;
-}
-.funny {
-font-weight: bold;
-color: #ff4d6d;
-}
-button {
-margin-top: 15px;
-padding: 8px 12px;
-font-size: 14px;
-border: 2px solid #000;
-border-radius: 8px;
-background: #ffcc33;
-cursor: pointer;
-box-shadow: 2px 2px 0px #000;
-}
-button:hover {
-background: #ffee66;
-}
+  body {
+    margin: 0;
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    overflow: hidden;
+    background: conic-gradient(from 0deg, red, orange, yellow, green, cyan, blue, violet, red);
+    animation: spinbg 5s linear infinite;
+    font-family: Comic Sans MS, cursive, sans-serif;
+    color: #fff;
+    perspective: 800px;
+  }
+
+  @keyframes spinbg {
+    0% { filter: hue-rotate(0deg) blur(0px); }
+    50% { filter: hue-rotate(180deg) blur(5px); }
+    100% { filter: hue-rotate(360deg) blur(0px); }
+  }
+
+  .card {
+    background: rgba(255, 255, 255, 0.1);
+    backdrop-filter: blur(20px);
+    border: 4px dashed #fff;
+    padding: 30px;
+    border-radius: 50%;
+    box-shadow: 0 0 50px neonpink;
+    text-align: center;
+    max-width: 320px;
+    transform-style: preserve-3d;
+    animation: wobble 3s infinite ease-in-out alternate, rotateCard 10s infinite linear;
+  }
+
+  @keyframes wobble {
+    0% { transform: rotateX(0) rotateY(0); }
+    50% { transform: rotateX(25deg) rotateY(-15deg) scale(1.1); }
+    100% { transform: rotateX(-25deg) rotateY(15deg) scale(0.9); }
+  }
+  @keyframes rotateCard {
+    0% { filter: hue-rotate(0deg); }
+    100% { filter: hue-rotate(360deg); }
+  }
+
+  .avatar {
+    width: 120px;
+    height: 120px;
+    border-radius: 50%;
+    background: repeating-conic-gradient(purple, magenta, cyan, lime, yellow, red, purple);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 48px;
+    font-weight: bold;
+    color: #000;
+    margin: 0 auto 20px;
+    border: 5px dotted #fff;
+    animation: spinAvatar 2s linear infinite;
+  }
+  @keyframes spinAvatar {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+  }
+
+  h1 {
+    margin: 0;
+    font-size: 28px;
+    animation: glitch 1.2s infinite;
+  }
+
+  .subtitle {
+    font-size: 16px;
+    margin: 6px 0 20px;
+    color: #ffccff;
+    text-shadow: 2px 2px 5px #000;
+    animation: rainbow 3s linear infinite;
+  }
+
+  .bio p {
+    font-size: 15px;
+    margin: 10px 0;
+    animation: floaty 2s ease-in-out infinite alternate;
+  }
+
+  @keyframes glitch {
+    0% { text-shadow: 2px 2px red, -2px -2px cyan; }
+    50% { text-shadow: -2px 2px lime, 2px -2px magenta; }
+    100% { text-shadow: 2px -2px yellow, -2px 2px blue; }
+  }
+
+  @keyframes rainbow {
+    0% { color: red; }
+    20% { color: orange; }
+    40% { color: yellow; }
+    60% { color: lime; }
+    80% { color: cyan; }
+    100% { color: magenta; }
+  }
+
+  @keyframes floaty {
+    0% { transform: translateY(0px) rotate(0deg); }
+    100% { transform: translateY(-15px) rotate(5deg); }
+  }
+
+  button {
+    margin-top: 15px;
+    padding: 12px 18px;
+    font-size: 16px;
+    border: 3px solid #fff;
+    border-radius: 12px;
+    background: repeating-linear-gradient(45deg, #ff0000, #ff9900, #33ff00, #00ffff, #9900ff);
+    cursor: pointer;
+    animation: pulse 1s infinite alternate;
+    color: #fff;
+    text-shadow: 1px 1px 3px #000;
+  }
+
+  @keyframes pulse {
+    0% { transform: scale(1) rotate(0deg); filter: hue-rotate(0deg); }
+    100% { transform: scale(1.3) rotate(10deg); filter: hue-rotate(360deg); }
+  }
+
+  /* Crazy overlays */
+  .overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
+    background: repeating-radial-gradient(circle, rgba(255,0,255,0.2), transparent 40px);
+    animation: spinOverlay 20s linear infinite;
+    mix-blend-mode: difference;
+  }
+  @keyframes spinOverlay {
+    from { transform: rotate(0deg); }
+    to { transform: rotate(360deg); }
+  }
+
 </style>
 </head>
 <body>
-<div class="card">
-<div class="avatar">A</div>
-<h1>ansin</h1>
-<div class="subtitle">stupid roblox developer</div>
-<div class="bio">
-<p class="funny">hi. i'm ansin. i break more scripts than i fix.</p>
-<p>special skills: accidentally deleting the main file, adding 300 "wait()" loops, and asking why my code doesn’t work.</p>
-<p>life goal: make a working ac bypass</p>
-</div>
-<button onclick="alert('my solora crashed guys!!')">say hi</button>
-</div>
+  <div class="overlay"></div>
+  <div class="card">
+    <div class="avatar">A</div>
+    <h1>ansin</h1>
+    <div class="subtitle">stupid roblox developer</div>
+    <div class="bio">
+      <p>hi. i'm ansin. i break more scripts than i fix.</p>
+      <p>special skills: accidentally deleting the main file, adding 300 "wait()" loops, and asking why my code doesn’t work.</p>
+      <p>life goal: make a working ac bypass</p>
+    </div>
+    <button onclick="alert('bro my roblox studio literally melted rn')">say hi</button>
+  </div>
 </body>
 </html>
